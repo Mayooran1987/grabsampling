@@ -1,6 +1,4 @@
-# Package: grabsampling [![Build Status](https://travis-ci.org/Mayooran1987/grabsampling.svg?branch=master)](https://travis-ci.org/Mayooran1987/grabsampling)
-
-## Probability of Detection for Grab Sample Selection 
+## Probability of Detection for Grab Sample Selection [![Build Status](https://travis-ci.org/Mayooran1987/grabsampling.svg?branch=master)](https://travis-ci.org/Mayooran1987/grabsampling)
 	This package has developed for the probability of detection calculation for grab samples selection by using two different methods such as systematic or random based on two-state Markov chain in bulk production process. 
 
 ## Prerequisites
