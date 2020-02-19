@@ -7,12 +7,8 @@
 
 ## Installing
       Any R user can install grabsampling package with just two lines of code:
-### Method 1:
 	    install.packages("devtools")
 	    devtools::install_github("Mayooran1987/grabsampling")
-### Method 2 (available soon):      
-      install.packages("githubinstall")
-      githubinstall::githubinstall("grabsampling")
       
 ## Version: 
 	1.0.0
