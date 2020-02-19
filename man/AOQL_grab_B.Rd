@@ -37,7 +37,6 @@ Since \eqn{P_a} is the probability of acceptance, \eqn{\lambda} is the aritmetic
   distribution <- 'Poisson lognormal'
   llim <- 0.20
   \donttest{AOQL_grab_B(c, r, t, distribution, llim)}
-  \donttest{AOQL_grab_B(c, r=1, t=750, distribution, llim)}
 }
 \seealso{
 \link{prob_accept}
