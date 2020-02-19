@@ -25,8 +25,5 @@ Maintainer: Mayooran Thevaraja <mayooran@eng.jfn.ac.lk>
 ## License
 	GPL (>= 2) 
 
-## URL: 
-  https://github.com/Mayooran1987/grabsampling 
-
 ## BugReports: 
   https://github.com/Mayooran1987/grabsampling/issues
