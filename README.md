@@ -3,7 +3,7 @@ This package has developed for the probability of detection calculation for grab
 
 ## Prerequisites
 
-	R (>= 3.2)
+R (>= 3.2)
 
 ## Installing
 
@@ -13,15 +13,15 @@ Any R user can install grabsampling package with just two lines of code:
 	    devtools::install_github("Mayooran1987/grabsampling")
       
 ## Version: 
-	1.0.0
+1.0.0
 
 ## Authors
-	Mayooran Thevaraja [aut, cre], Kondaswamy Govindaraju [aut], Mark Bebbington [aut]
+Mayooran Thevaraja [aut, cre], Kondaswamy Govindaraju [aut], Mark Bebbington [aut]
 
 Maintainer: Mayooran Thevaraja <mayooran@eng.jfn.ac.lk>
 
 ## License
-	GPL (>= 2) 
+GPL (>= 2) 
 
 ## BugReports: 
   https://github.com/Mayooran1987/grabsampling/issues
