@@ -55,7 +55,7 @@ AOQL_grab_B<- function(c, r, t, distribution,llim, K = 0.25, m = 0, sd = 0.8){
     #                                                                     sprintf("%f", log(0.25, 10)-(sd^2/2)*log(10, exp(1))),
     #                                                                     sprintf("%f", log(0.30, 10)-(sd^2/2)*log(10, exp(1))),
     #                                                                     sprintf("%f", log(0.50, 10)-(sd^2/2)*log(10, exp(1))))))+
-    ggplot2::geom_hline(yintercept=AOQ[which.max(AOQ)],linetype = "dashed")+ggplot2::geom_text(ggplot2::aes(lambda[which.max(AOQ)],AOQ[which.max(AOQ)],label = sprintf("AOQL = %0.4f", round(AOQ[which.max(AOQ)], digits = 4)),hjust = -1, vjust = 1.5),size = 3, colour="blue")
+    ggplot2::geom_hline(yintercept=AOQ[which.max(AOQ)],linetype = "dashed")+ggplot2::geom_text(ggplot2::aes(lambda[which.max(AOQ)],AOQ[which.max(AOQ)],label = sprintf("AOQL = %0.4f", round(AOQ[which.max(AOQ)], digits = 4)),hjust = -1, vjust = 1.5),size = 3)
   }
 
 
