@@ -6,7 +6,9 @@
 	R (>= 3.2)
 
 ## Installing
-      Any R user can install grabsampling package with just two lines of code:
+
+Any R user can install grabsampling package with just two lines of code:
+
 	    install.packages("devtools")
 	    devtools::install_github("Mayooran1987/grabsampling")
       
