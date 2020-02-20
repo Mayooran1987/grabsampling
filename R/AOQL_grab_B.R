@@ -24,7 +24,7 @@
 AOQL_grab_B<- function(c, r, t, distribution,llim, K = 0.25, m = 0, sd = 0.8){
   Sampling_scheme <- NULL  # Initalizing
   P_D <- NULL
-  lambda <- seq(0, llim, by = 1e-03)
+  lambda <- seq(0, llim, by = 1e-04)
   mu <- log(lambda, 10)-(sd^2/2)*log(10, exp(1))
   AOQ <- lambda*prob_accept(c, r, t, mu, distribution, K = 0.25, m = 0, sd = 0.8)
   Prob_df <- data.frame(lambda, AOQ)
