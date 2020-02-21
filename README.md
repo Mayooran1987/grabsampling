@@ -1,4 +1,5 @@
-## Probability of Detection for Grab Sample Selection [![Build Status](https://travis-ci.org/Mayooran1987/grabsampling.svg?branch=master)](https://travis-ci.org/Mayooran1987/grabsampling)  [![CRAN checks](https://cranchecks.info/badges/summary/grabsampling)](https://cran.r-project.org/web/checks/check_results_grabsampling.html)
+ [![Build Status](https://travis-ci.org/Mayooran1987/grabsampling.svg?branch=master)](https://travis-ci.org/Mayooran1987/grabsampling)  ![CI](https://github.com/Mayooran1987/grabsampling/workflows/CI/badge.svg) [![CRAN checks](https://cranchecks.info/badges/summary/grabsampling)](https://cran.r-project.org/web/checks/check_results_grabsampling.html)
+## Probability of Detection for Grab Sample Selection 
 This package has developed for the probability of detection calculation for grab samples selection by using two different methods such as systematic or random based on two-state Markov chain in bulk production process. 
 
 ## Prerequisites
