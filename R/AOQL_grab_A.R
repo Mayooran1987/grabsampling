@@ -51,5 +51,6 @@ AOQL_grab_A <- function(c, r, t, d, N, method, plim){
     # ggplot2::ggtitle("AOQ curve based on limiting fraction of contaminated increments") +
     ggplot2::ylab(expression(AOQ)) +ggplot2::xlab(expression("limiting fraction (" ~ p*~")"))+
     ggplot2::theme_classic() + ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 10), legend.position = c(0.75, 0.50)) + ggthemes::scale_colour_colorblind() +
-    ggplot2::geom_hline(yintercept=AOQ[which.max(AOQ)],linetype = "dashed")+ggplot2::geom_text(ggplot2::aes(p[which.max(AOQ)],AOQ[which.max(AOQ)],label = sprintf("AOQL = %0.4f", round(AOQ[which.max(AOQ)], digits = 4)), hjust = -1, vjust = 1.5), size = 3)
+    ggplot2::geom_hline(yintercept=AOQ[which.max(AOQ)],linetype = "dashed")+
+    ggplot2::annotate("text", x=4*p[which.max(AOQ)], y=AOQ[which.max(AOQ)], label = sprintf("\n AOQL = %0.4f", round(AOQ[which.max(AOQ)], digits = 4)), size=3)
 }
