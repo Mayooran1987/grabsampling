@@ -10,7 +10,7 @@
 ##' @details  Since \eqn{P_{ND}} is the probability of non-detection, \eqn{p} is the limiting fraction of contaminated increments and the outgoing contaminated proportion of primary increments is given by \eqn{AOQ} as the product \eqn{pP_{ND}}.
 ##'           The quantity \eqn{AOQL} is defined as the maximum proportion of outgoing contaminated primary increments and is given by \deqn{AOQL ={\max_{0\leq p\leq 1}}{pP_{ND}}}
 ##' @seealso  \link{prob_detect}
-# @references None
+##' @return AOQ curve and AOQL value based on on limiting fraction
 ##' @examples
 ##'   c <-  0
 ##'   r <-  25
@@ -19,7 +19,7 @@
 ##'   N <-  1e9
 ##'   method <- 'systematic'
 ##'   plim <- 0.30
-##'   \donttest{AOQL_grab_A(c, r, t, d, N, method, plim)}
+##'   AOQL_grab_A(c, r, t, d, N, method, plim)
 ##' @usage  AOQL_grab_A(c, r, t, d, N, method, plim)
 ##' @export
 AOQL_grab_A <- function(c, r, t, d, N, method, plim){

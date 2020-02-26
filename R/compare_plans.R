@@ -8,7 +8,7 @@
 ##' @param method1,method2,method3,method4 what sampling method we have applied such as \code{'systematic'} or \code{'random'} selection methods
 ##' @param plim the upper limit for graphing the fraction nonconforming or proportion of contaminated increments
 ##' @param type what type of graph we want to produce such as \code{D} or \code{ND}. \code{\link{compare_plans}} produces a graphical display of \eqn{P_D} or \eqn{P_{ND}} versus \eqn{p} depending on the \code{D} or \code{ND} of type
-# @details
+##' @return Probability of detection or non detection vs limiting fraction curves
 ##' @examples
 ##' c1 <- 0
 ##' c2 <- 0
@@ -26,13 +26,13 @@
 ##' N <- 1e9
 ##' method1 <- method2 <- method3 <- method4 <- 'systematic'
 ##' plim <- 0.10
-##' \donttest{compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2)}
-##' \donttest{compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2,
-##'                         c3, r3, t3, method3)}
-##' \donttest{compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2,
-##'                         c3, r3, t3, method3, c4, r4, t4, method4)}
-##' \donttest{compare_plans(d, N, plim, type ='ND', c1, r1, t1, method1, c2, r2, t2, method2,
-##'                         c3, r3, t3, method3, c4, r4, t4, method4)}
+##' compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2)
+##' compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2,
+##'                         c3, r3, t3, method3)
+##' compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2,
+##'                         c3, r3, t3, method3, c4, r4, t4, method4)
+##' compare_plans(d, N, plim, type ='ND', c1, r1, t1, method1, c2, r2, t2, method2,
+##'                         c3, r3, t3, method3, c4, r4, t4, method4)
 ##'
 ##' @usage compare_plans(d, N, plim, type, c1, r1, t1, method1, c2, r2, t2, method2,
 ##'                      c3, r3, t3, method3, c4, r4, t4, method4)

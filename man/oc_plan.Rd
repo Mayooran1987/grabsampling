@@ -21,6 +21,9 @@ oc_plan(c, r, t, distribution, K, m, sd)
 
 \item{sd}{standard deviation of the lognormal and Poisson-lognormal distributions on the log10 scale (default value 0.8)}
 }
+\value{
+Operating Characteristic (OC) curve
+}
 \description{
 \code{\link{oc_plan}} provides the Operating Characteristic (OC) curve for known microbiological distribution such as lognormal. The probability of acceptance is plotted against mean log10 concentration.
 }
@@ -32,15 +35,7 @@ Based on the food safety literature, mean concentration is given by \eqn{\lambda
   r <-  25
   t <-  30
   distribution <- 'Poisson lognormal'
-  \donttest{oc_plan(c, r, t, distribution)}
-  \donttest{oc_plan(c, r, t, distribution, sd = 0.4)}
-}
-\references{
-\itemize{
-\item Jongenburger, I., Besten, H.M., & Zwietering, M.H. (2015). Statistical aspects of food safety sampling. Annual review of food science and technology, 6, \href{https://doi.org/10.1146/annurev-food-022814-015546}{479-503}.
-\item Mussida, A., Vose, D. & Butler, F. Efficiency of the sampling plan for {C}ronobacter spp. assuming a Poisson lognormal distribution of the bacteria in powder infant formula and the implications of assuming a fixed within and between-lot variability, Food Control, Elsevier, 2013 , 33 , \href{https://doi.org/10.1016/j.foodcont.2013.02.021}{174-185}.
-\item Van Schothorst, M., Zwietering, M., Ross, T., Buchanan, R. & Cole, M., Relating microbiological criteria to food safety objectives and performance objectives  Food Control , 2009 , 20 , \href{https://doi.org/10.1016/j.foodcont.2008.11.005}{967-979}.
-}
+  oc_plan(c, r, t, distribution)
 }
 \seealso{
 \link{prob_accept}

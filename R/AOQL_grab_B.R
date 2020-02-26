@@ -8,17 +8,17 @@
 ##' @param m microbiological limit with default value zero, generally expressed as number of microorganisms in specific sample weight
 ##' @param sd standard deviation of the lognormal and Poisson-lognormal distributions on the log10 scale (default value 0.8)
 ##' @param llim the upper limit for graphing the arithmetic mean of cell count
-##' @details  Since \eqn{P_a} is the probability of acceptance, \eqn{\lambda} is the aritmetic mean of cell count and the outgoing contaminated aritmetic mean of cell count of primary increments is given by \eqn{AOQ} as the product \eqn{\lambda P_a}.
+##' @details  Since \eqn{P_a} is the probability of acceptance, \eqn{\lambda} is the arithmetic mean of cell count and the outgoing contaminated arithmetic mean of cell count of primary increments is given by \eqn{AOQ} as the product \eqn{\lambda P_a}.
 ##'           The quantity \eqn{AOQL} is defined as the maximum proportion of outgoing contaminated primary increments and is given by \deqn{AOQL ={\max_{\lambda \geq 0}}{\lambda P_a}}
 ##' @seealso  \link{prob_accept}
-# @references None
+##' @return AOQ curve and AOQL value based on average microbial counts
 ##' @examples
 ##'   c <-  0
 ##'   r <-  25
 ##'   t <-  30
 ##'   distribution <- 'Poisson lognormal'
 ##'   llim <- 0.20
-##'   \donttest{AOQL_grab_B(c, r, t, distribution, llim)}
+##'   AOQL_grab_B(c, r, t, distribution, llim)
 ##' @usage  AOQL_grab_B(c, r, t, distribution,llim, K, m, sd)
 ##' @export
 AOQL_grab_B<- function(c, r, t, distribution,llim, K = 0.25, m = 0, sd = 0.8){

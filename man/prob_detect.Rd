@@ -21,6 +21,9 @@ prob_detect(c, r, t, d, p, N, method)
 
 \item{method}{what sampling method we have applied such as \code{'systematic'} or \code{'random'} selection methods}
 }
+\value{
+Probability of detection in all seleceted grab samples
+}
 \description{
 This function gives the detection probability for  \code{t} grab samples and given acceptance number under systematic or random sampling methods. This function is also used to calculate the detection probability for primary increments selection by setting the number of primary increments as one.
 }
@@ -36,7 +39,7 @@ The detection probability of entire selected grab samples is given by,
   p <-  0.005
   N <-  1e9
   method <- 'systematic'
-  \donttest{prob_detect(c, r, t, d, p, N, method)}
+  prob_detect(c, r, t, d, p, N, method)
 }
 \seealso{
 \link{prob_contaminant}

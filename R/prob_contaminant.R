@@ -7,6 +7,7 @@
 ##' @param p limiting fraction or proportion of contaminated increments
 ##' @param N length of the production
 ##' @param method what sampling method we have applied such as \code{'systematic'} or \code{'random'} selection methods
+##' @return Probability of contaminated
 ##' @details Let \eqn{S_t} be the number of contaminated samples and \eqn{S_t=\sum X_t} where \eqn{X_t=1} or \eqn{0} depending on the presence or absence of contamination, then \eqn{P(S_t=l)} formula given in \href{https://doi.org/10.2307/1427041}{Bhat and Lal (1988)}, also we can use following recurrence relation formula,
 ##' \deqn{P(S_t=l)=P(X_t=1;S_{t-1}=l-1) + P(X_t=0;S_{t-1}=l)} which is given in \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/nav.1028}{Vellaisamy and Sankar (2001)}. Both methods will be produced the same results.
 ##' For this package development, we directly applied formula which is from \href{https://doi.org/10.2307/1427041}{Bhat and Lal (1988)}.
@@ -24,7 +25,7 @@
 ##'   p <-  0.005
 ##'   N <-  1e9
 ##'   method <- 'systematic'
-##'   \donttest{prob_contaminant(l, r, t, d, p, N, method)}
+##'   prob_contaminant(l, r, t, d, p, N, method)
 ##' @export
 prob_contaminant <- function(l, r, t, d, p, N, method) {
     p_d <- prob_detect_single_grab(r, p, d)
@@ -56,7 +57,7 @@ prob_contaminant <- function(l, r, t, d, p, N, method) {
             s_t <- sum1 + sum2 + sum3
         }
     else {
-        print("please choose one of the given sampling method with case sensitive such as 'random' or 'systematic'")
+        warning ("please choose one of the given sampling method with case sensitive such as 'random' or 'systematic'")
     }
     return(s_t)
     }

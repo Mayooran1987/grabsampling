@@ -8,6 +8,7 @@
 ##' @param K dispersion parameter of the Poisson gamma distribution (default value 0.25)
 ##' @param m microbiological limit with default value zero, generally expressed as number of microorganisms in specific sample weight
 ##' @param sd standard deviation of the lognormal and Poisson-lognormal distributions on the log10 scale (default value 0.8)
+##' @return Probability of acceptance
 ##' @details Based on the food safety literature, for given values of \code{c}, \code{r} and \code{t}, the probability of detection in a primary increment is given by, \eqn{p_d=P(X > m)=1-P_{distribution}(X \le m|\mu ,\sigma)} and acceptance probability in \code{t} selected sample is given by \eqn{P_a=P_{binomial}(X \le c|t,p_d)}.
 ##'
 ##' If Y be the sum of correlated and identically distributed lognormal random variables X, then the approximate distribution of Y is lognormal
@@ -18,10 +19,8 @@
 ##' (see \href{https://doi.org/10.1016/j.foodcont.2013.02.021}{Mussida et al (2013)}). For this package development, we have used fixed \eqn{\sigma_y} value with default value 0.8.
 ##' @references
 ##' \itemize{
-##' \item Jongenburger, I., Besten, H.M., & Zwietering, M.H. (2015). Statistical aspects of food safety sampling. Annual review of food science and technology, 6, \href{https://doi.org/10.1146/annurev-food-022814-015546}{479-503}.
 ##' \item Mussida, A., Vose, D. & Butler, F. Efficiency of the sampling plan for {C}ronobacter spp. assuming a Poisson lognormal distribution of the bacteria in powder infant formula and the implications of assuming a fixed within and between-lot variability, Food Control, Elsevier, 2013 , 33 , \href{https://doi.org/10.1016/j.foodcont.2013.02.021}{174-185}.
 ##' \item Mehta, N.B, Molisch, A.F, Wu, J, &  Zhang, J., 'Approximating the Sum of Correlated Lognormal or, Lognormal-Rice Random Variables,' 2006 IEEE International Conference on Communications, Istanbul, 2006, pp. \href{https://doi.org/10.1109/ICC.2006.255040}{1605-1610}.
-##' \item Van Schothorst, M., Zwietering, M., Ross, T., Buchanan, R. & Cole, M., Relating microbiological criteria to food safety objectives and performance objectives  Food Control , 2009 , 20 , \href{https://doi.org/10.1016/j.foodcont.2008.11.005}{967-979}.
 ##' }
 ##' @examples
 ##'   c <-  0
@@ -29,8 +28,7 @@
 ##'   t <-  30
 ##'   mu <-  -3
 ##'   distribution <- 'Poisson lognormal'
-##'   \donttest{prob_accept(c, r, t, mu, distribution)}
-##'   \donttest{prob_accept(c, r, t, mu, distribution, sd = 0.4)}
+##'   prob_accept(c, r, t, mu, distribution)
 ##' @usage prob_accept(c, r, t, mu, distribution, K, m, sd)
 ##' @export
 ## we have used the notation as P_D in the paper Quantitative risk assessment for grab sampling inspection of powdered products
@@ -78,7 +76,7 @@ prob_accept <- function(c, r, t, mu, distribution, K = 0.25, m = 0, sd = 0.8) {
         p_defect <- as.numeric(lapply(mu, sam))
         prob_accept <- stats::pbinom(c, t, p_defect)
     } else {
-        print("please choose one of the given distribution with case sensitive such as 'Poisson' or 'Poisson gamma' or 'Lognormal' or 'Poisson lognormal'")
+        warning("please choose one of the given distribution with case sensitive such as 'Poisson' or 'Poisson gamma' or 'Lognormal' or 'Poisson lognormal'")
     }
     return(prob_accept)
 }

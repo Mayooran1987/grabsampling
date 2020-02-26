@@ -7,13 +7,7 @@
 ##' @param K dispersion parameter of the Poisson gamma distribution (default value 0.25)
 ##' @param m microbiological limit with default value zero, generally expressed as number of microorganisms in specific sample weight
 ##' @param sd standard deviation of the lognormal and Poisson-lognormal distributions on the log10 scale (default value 0.8)
-# @details
-##' @references
-##' \itemize{
-##' \item Jongenburger, I., Besten, H.M., & Zwietering, M.H. (2015). Statistical aspects of food safety sampling. Annual review of food science and technology, 6, \href{https://doi.org/10.1146/annurev-food-022814-015546}{479-503}.
-##' \item Mussida, A., Vose, D. & Butler, F. Efficiency of the sampling plan for {C}ronobacter spp. assuming a Poisson lognormal distribution of the bacteria in powder infant formula and the implications of assuming a fixed within and between-lot variability, Food Control, Elsevier, 2013 , 33 , \href{https://doi.org/10.1016/j.foodcont.2013.02.021}{174-185}.
-##' \item Van Schothorst, M., Zwietering, M., Ross, T., Buchanan, R. & Cole, M., Relating microbiological criteria to food safety objectives and performance objectives  Food Control , 2009 , 20 , \href{https://doi.org/10.1016/j.foodcont.2008.11.005}{967-979}.
-##' }
+##' @return overlaid OC curves
 ##' @seealso \link{prob_accept}
 ##' @examples
 ##' c1 <- 0
@@ -26,8 +20,7 @@
 ##' t2 <- 10
 ##' t3 <- 10
 ##' distribution <- 'Poisson lognormal'
-##' \donttest{compare_plans_oc(c1, c2, c3, r1, t1, r2, t2, r3, t3, distribution)}
-##' \donttest{compare_plans_oc(c1, c2, c3, r1, t1, r2, t2, r3, t3, distribution, sd = 0.4)}
+##' compare_plans_oc(c1, c2, c3, r1, t1, r2, t2, r3, t3, distribution)
 ##' @usage compare_plans_oc(c1, c2, c3, r1, t1, r2, t2, r3, t3, distribution, K, m, sd)
 ##' @export
 compare_plans_oc <- function(c1, c2, c3, r1, t1, r2, t2, r3, t3, distribution, K = 0.25, m = 0, sd = 0.8) {

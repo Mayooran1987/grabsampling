@@ -13,6 +13,9 @@ correlation_grab(r, p, d)
 
 \item{d}{serial correlation of contamination between the primary increments}
 }
+\value{
+Serial correlation between grab samples
+}
 \description{
 This function calculates the resulting serial correlation between grab samples each having \code{r} primary increments with original serial correlation \code{d}.
 }
@@ -25,7 +28,7 @@ where \eqn{p_d} is the probability of detection in any of the block (grab sample
 r <-  25
 p <-  0.005
 d <-  0.99
-\donttest{correlation_grab(r, p, d)}
+correlation_grab(r, p, d)
 }
 \seealso{
 \link{prob_detect_single_grab}

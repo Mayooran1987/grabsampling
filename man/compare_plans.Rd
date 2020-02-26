@@ -24,6 +24,9 @@ compare_plans(d, N, plim, type, c1, r1, t1, method1, c2, r2, t2, method2,
 
 \item{method1, method2, method3, method4}{what sampling method we have applied such as \code{'systematic'} or \code{'random'} selection methods}
 }
+\value{
+Probability of detection or non detection vs limiting fraction curves
+}
 \description{
 This function allows comparison of different sampling schemes, which can be systematic and random sampling of primary increments or grab sampling of blocks of primary increments.  A graphical display of the probability of detection \eqn{P_D} or probability of non detection \eqn{P_{ND}} versus fraction nonconforming \eqn{p} for up to four selected schemes will be produced.
 }
@@ -44,12 +47,12 @@ d <- 0.99
 N <- 1e9
 method1 <- method2 <- method3 <- method4 <- 'systematic'
 plim <- 0.10
-\donttest{compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2)}
-\donttest{compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2,
-                        c3, r3, t3, method3)}
-\donttest{compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2,
-                        c3, r3, t3, method3, c4, r4, t4, method4)}
-\donttest{compare_plans(d, N, plim, type ='ND', c1, r1, t1, method1, c2, r2, t2, method2,
-                        c3, r3, t3, method3, c4, r4, t4, method4)}
+compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2)
+compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2,
+                        c3, r3, t3, method3)
+compare_plans(d, N, plim, type ='D', c1, r1, t1, method1, c2, r2, t2, method2,
+                        c3, r3, t3, method3, c4, r4, t4, method4)
+compare_plans(d, N, plim, type ='ND', c1, r1, t1, method1, c2, r2, t2, method2,
+                        c3, r3, t3, method3, c4, r4, t4, method4)
 
 }

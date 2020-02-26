@@ -23,6 +23,9 @@ prob_accept(c, r, t, mu, distribution, K, m, sd)
 
 \item{sd}{standard deviation of the lognormal and Poisson-lognormal distributions on the log10 scale (default value 0.8)}
 }
+\value{
+Probability of acceptance
+}
 \description{
 This function calculates the overall probability of acceptance for given microbiological distribution such as lognormal.
 }
@@ -42,14 +45,11 @@ The parameters \eqn{\mu_y} and \eqn{\sigma_y} of the grab sample unit Y is given
   t <-  30
   mu <-  -3
   distribution <- 'Poisson lognormal'
-  \donttest{prob_accept(c, r, t, mu, distribution)}
-  \donttest{prob_accept(c, r, t, mu, distribution, sd = 0.4)}
+  prob_accept(c, r, t, mu, distribution)
 }
 \references{
 \itemize{
-\item Jongenburger, I., Besten, H.M., & Zwietering, M.H. (2015). Statistical aspects of food safety sampling. Annual review of food science and technology, 6, \href{https://doi.org/10.1146/annurev-food-022814-015546}{479-503}.
 \item Mussida, A., Vose, D. & Butler, F. Efficiency of the sampling plan for {C}ronobacter spp. assuming a Poisson lognormal distribution of the bacteria in powder infant formula and the implications of assuming a fixed within and between-lot variability, Food Control, Elsevier, 2013 , 33 , \href{https://doi.org/10.1016/j.foodcont.2013.02.021}{174-185}.
 \item Mehta, N.B, Molisch, A.F, Wu, J, &  Zhang, J., 'Approximating the Sum of Correlated Lognormal or, Lognormal-Rice Random Variables,' 2006 IEEE International Conference on Communications, Istanbul, 2006, pp. \href{https://doi.org/10.1109/ICC.2006.255040}{1605-1610}.
-\item Van Schothorst, M., Zwietering, M., Ross, T., Buchanan, R. & Cole, M., Relating microbiological criteria to food safety objectives and performance objectives  Food Control , 2009 , 20 , \href{https://doi.org/10.1016/j.foodcont.2008.11.005}{967-979}.
 }
 }

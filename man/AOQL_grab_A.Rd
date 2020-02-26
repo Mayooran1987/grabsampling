@@ -21,6 +21,9 @@ AOQL_grab_A(c, r, t, d, N, method, plim)
 
 \item{plim}{the upper limit for graphing the fraction nonconforming or proportion of contaminated increments}
 }
+\value{
+AOQ curve and AOQL value based on on limiting fraction
+}
 \description{
 \code{\link{AOQL_grab_A}} provides the AOQ curve and calculates AOQL value based on limiting fraction of contaminated increments.
 }
@@ -36,7 +39,7 @@ Since \eqn{P_{ND}} is the probability of non-detection, \eqn{p} is the limiting 
   N <-  1e9
   method <- 'systematic'
   plim <- 0.30
-  \donttest{AOQL_grab_A(c, r, t, d, N, method, plim)}
+  AOQL_grab_A(c, r, t, d, N, method, plim)
 }
 \seealso{
 \link{prob_detect}

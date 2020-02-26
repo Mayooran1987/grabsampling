@@ -23,11 +23,14 @@ AOQL_grab_B(c, r, t, distribution,llim, K, m, sd)
 
 \item{sd}{standard deviation of the lognormal and Poisson-lognormal distributions on the log10 scale (default value 0.8)}
 }
+\value{
+AOQ curve and AOQL value based on average microbial counts
+}
 \description{
 \code{\link{AOQL_grab_B}} provides the AOQ curve and calculates AOQL value based on average microbial counts.
 }
 \details{
-Since \eqn{P_a} is the probability of acceptance, \eqn{\lambda} is the aritmetic mean of cell count and the outgoing contaminated aritmetic mean of cell count of primary increments is given by \eqn{AOQ} as the product \eqn{\lambda P_a}.
+Since \eqn{P_a} is the probability of acceptance, \eqn{\lambda} is the arithmetic mean of cell count and the outgoing contaminated arithmetic mean of cell count of primary increments is given by \eqn{AOQ} as the product \eqn{\lambda P_a}.
           The quantity \eqn{AOQL} is defined as the maximum proportion of outgoing contaminated primary increments and is given by \deqn{AOQL ={\max_{\lambda \geq 0}}{\lambda P_a}}
 }
 \examples{
@@ -36,7 +39,7 @@ Since \eqn{P_a} is the probability of acceptance, \eqn{\lambda} is the aritmetic
   t <-  30
   distribution <- 'Poisson lognormal'
   llim <- 0.20
-  \donttest{AOQL_grab_B(c, r, t, distribution, llim)}
+  AOQL_grab_B(c, r, t, distribution, llim)
 }
 \seealso{
 \link{prob_accept}

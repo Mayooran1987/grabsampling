@@ -13,6 +13,9 @@ prob_detect_single_grab(r, p, d)
 
 \item{d}{serial correlation of contamination between the primary increments}
 }
+\value{
+Probability of detection in a grab sample
+}
 \description{
 This function calculates the probability of detection in a single grab sample comprising of \code{r} primary increments for given serial correlation \code{d}.
 }
@@ -24,5 +27,5 @@ The probability of detection in any of the grab sample is given by \eqn{p_d} as
    r <-  25
    p <-  0.005
    d <-  0.99
-   \donttest{prob_detect_single_grab(r, p, d)}
+   prob_detect_single_grab(r, p, d)
 }

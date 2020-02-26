@@ -21,6 +21,9 @@ prob_contaminant(l, r, t, d, p, N, method)
 
 \item{method}{what sampling method we have applied such as \code{'systematic'} or \code{'random'} selection methods}
 }
+\value{
+Probability of contaminated
+}
 \description{
 This function calculates the probability of exactly  \code{l}  contaminated samples out of \code{t} selected grab samples for given gram sample size \code{r} and serial correlation \code{d} at the process contamination level \code{p} for a production length of \code{N}.
 }
@@ -37,7 +40,7 @@ For this package development, we directly applied formula which is from \href{ht
   p <-  0.005
   N <-  1e9
   method <- 'systematic'
-  \donttest{prob_contaminant(l, r, t, d, p, N, method)}
+  prob_contaminant(l, r, t, d, p, N, method)
 }
 \references{
 \itemize{
