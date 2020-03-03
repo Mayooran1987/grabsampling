@@ -5,7 +5,7 @@
 \title{Probability of detection or non detection  versus fraction nonconforming curve}
 \usage{
 compare_plans(d, N, plim, type, c1, r1, t1, method1, c2, r2, t2, method2,
-                     c3, r3, t3, method3, c4, r4, t4, method4)
+                     c3, r3, t3, method3, c4, r4, t4, method4,linetype)
 }
 \arguments{
 \item{d}{serial correlation of contamination between the primary increments}
@@ -23,6 +23,8 @@ compare_plans(d, N, plim, type, c1, r1, t1, method1, c2, r2, t2, method2,
 \item{t1, t2, t3, t4}{number of grab samples}
 
 \item{method1, method2, method3, method4}{what sampling method we have applied such as \code{'systematic'} or \code{'random'} selection methods}
+
+\item{linetype}{if we want to get a different type of line for each sampling scheme, set it to FALSE otherwise graph will be produced with the same type of line (default TRUE)}
 }
 \value{
 Probability of detection or non detection vs limiting fraction curves
