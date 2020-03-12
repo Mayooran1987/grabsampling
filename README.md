@@ -1,5 +1,5 @@
  [![Build Status](https://travis-ci.org/Mayooran1987/grabsampling.svg?branch=master)](https://travis-ci.org/Mayooran1987/grabsampling) [![Build status](https://ci.appveyor.com/api/projects/status/2ousql3kftahm32k?svg=true)](https://ci.appveyor.com/project/Mayooran1987/grabsampling-ub7sv)
-[![](https://www.r-pkg.org/badges/version/grabsampling?color=green)](https://cran.r-project.org/package=grabsampling)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/grabsampling)](https://cran.r-project.org/package=grabsampling)
    
 # grabsampling
 
