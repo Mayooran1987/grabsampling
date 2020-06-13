@@ -37,7 +37,7 @@ compare_plans_oc_sd <- function(c1, c2, c3, r1, t1, r2, t2, r3, t3, sd1, sd2, sd
   Prob_df <- data.frame(mu, p_a1, p_a2, p_a3)
   f_spr <- function(t, r, c, sd) {
     if (r == 1) {
-      sprintf("increments sampling (t=%.0f, c=%.0f, sd=%.2f)", t, c, sd)
+      sprintf("increments sampling (t=%.0f, c=%.0f, sd=%.2f)", t, r, c, sd)
     } else {
       sprintf("grab sampling (t=%.0f, r=%.0f, c=%.0f, sd=%.2f)", t, r, c, sd)
     }

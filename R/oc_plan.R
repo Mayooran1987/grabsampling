@@ -28,7 +28,7 @@ oc_plan <- function(c, r, t, distribution, K = 0.25, m = 0, sd = 0.8) {
         Prob_df <- data.frame(mu, p_a1)
         f_spr <- function(t, r, c) {
             if (r == 1) {
-                sprintf("increments sampling (t=%.0f, c=%.0f)", t, c)
+                sprintf("increments sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
             } else {
                 sprintf("grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
             }

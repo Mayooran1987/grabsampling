@@ -29,7 +29,7 @@ AOQL_grab_A <- function(c, r, t, d, N, method, plim){
   if (method == "systematic") {
     f_spr <- function(t, r, c) {
       if (r == 1) {
-        sprintf("systematic increments sampling (t=%.0f, c=%.0f)", t, c)
+        sprintf("systematic increments sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
       } else {
         sprintf("systematic grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
       }
@@ -37,7 +37,7 @@ AOQL_grab_A <- function(c, r, t, d, N, method, plim){
   } else {
     f_spr <- function(t, r, c) {
       if (r == 1) {
-        sprintf("random increments sampling (t=%.0f, c=%.0f)", t, c)
+        sprintf("random increments sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
       } else {
         sprintf("random grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
       }

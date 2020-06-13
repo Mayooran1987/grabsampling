@@ -45,13 +45,13 @@ compare_plans <- function(d, N, plim, type, c1, r1, t1, method1, c2 = NULL, r2 =
     f_spr <- function(t, r, c, method) {
         if (method == "systematic") {
             if (r == 1) {
-                sprintf("systematic increments sampling (t=%.0f, c=%.0f)", t, c)
+                sprintf("systematic increments sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
                 } else {
                     sprintf("systematic grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
                     }
             } else {
                 if (r == 1) {
-                    sprintf("random increments sampling (t=%.0f, c=%.0f)", t, c)
+                    sprintf("random increments sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
                     } else {
                         sprintf("random grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
                     }

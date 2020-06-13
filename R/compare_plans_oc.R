@@ -34,7 +34,7 @@ compare_plans_oc <- function(c1, c2, c3, r1, t1, r2, t2, r3, t3, distribution, K
     Prob_df <- data.frame(mu, p_a1, p_a2, p_a3)
     f_spr <- function(t, r, c) {
         if (r == 1) {
-            sprintf("increments sampling (t=%.0f, c=%.0f)", t, c)
+            sprintf("increments sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
             } else {
                 sprintf("grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
             }
