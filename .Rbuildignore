@@ -2,3 +2,9 @@
 ^\.Rproj\.user$
 ^cran-comments\.md$
 ^\.travis\.yml$
+^appveyor\.yml$
+^CRAN-RELEASE$
+^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
