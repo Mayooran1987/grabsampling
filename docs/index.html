@@ -5,20 +5,22 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Probability of Detection for Grab Sample Selection • grabsampling</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<title>Probability of detection for grab sample selection • grabsampling</title>
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Probability of Detection for Grab Sample Selection">
-<meta property="og:description" content="Functions for obtaining the probability of detection, for grab samples selection by using two different methods such as systematic or random based on two-state Markov chain model. For detection probability calculation, we used results from Bhat, U. and Lal, R. (1988) &lt;doi:10.2307/1427041&gt;.">
+<script src="pkgdown.js"></script><meta property="og:title" content="Probability of detection for grab sample selection">
+<meta property="og:description" content="The goal of grabsampling package is to enable probability of detection calculation for grab samples selection by using two different methods such as systematic or random based on two-state Markov chain in bulk production process. ">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,26 +33,20 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">grabsampling</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/Mayooran1987/grabsampling/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/Mayooran1987/grabsampling/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -66,41 +62,72 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="grabsampling" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#grabsampling" class="anchor"></a>grabsampling</h1></div>
 
+
+<div class="section level1">
+<div class="page-header"><h1 id="grabsampling">grabsampling<a class="anchor" aria-label="anchor" href="#grabsampling"></a>
+</h1></div>
 <p>The goal of grabsampling is to the probability of detection calculation for grab samples selection by using two different methods such as systematic or random based on two-state Markov chain in bulk production process.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>Any R user can install the development version of grabsampling package from <a href="https://github.com/">GitHub</a> with just two lines of code:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"Mayooran1987/grabsampling"</span>)</pre></div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>Any R user can install the development version of grabsampling package from <a href="https://github.com/" class="external-link">GitHub</a> with just two lines of code:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Mayooran1987/grabsampling"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
+</h2>
+<p>R (&gt;= 3.2)</p>
+</div>
+<div class="section level2">
+<h2 id="authors">Authors<a class="anchor" aria-label="anchor" href="#authors"></a>
+</h2>
+<p>Mayooran Thevaraja [aut, cre], Kondaswamy Govindaraju [aut], Mark Bebbington [aut]</p>
+<p>Maintainer: Mayooran Thevaraja <a href="mailto:mayooran@eng.jfn.ac.lk" class="email">mayooran@eng.jfn.ac.lk</a></p>
+</div>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>GPL (&gt;= 2)</p>
+</div>
+<div class="section level2">
+<h2 id="bugreports">BugReports:<a class="anchor" aria-label="anchor" href="#bugreports"></a>
+</h2>
+<p><a href="https://github.com/Mayooran1987/grabsampling/issues" class="external-link uri">https://github.com/Mayooran1987/grabsampling/issues</a></p>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=grabsampling">https://​cloud.r-project.org/​package=grabsampling</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/Mayooran1987/grabsampling/">https://​github.com/​Mayooran1987/​grabsampling/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/Mayooran1987/grabsampling/issues">https://​github.com/​Mayooran1987/​grabsampling/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=grabsampling" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/Mayooran1987/grabsampling/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/Mayooran1987/grabsampling/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPL (&gt;= 2)</li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing grabsampling</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Mayooran Thevaraja <br><small class="roles"> Author, maintainer </small>  </li>
 <li>Kondaswamy Govindaraju <br><small class="roles"> Author </small>  </li>
@@ -108,25 +135,27 @@
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.com/Mayooran1987/grabsampling"><img src="https://travis-ci.com/Mayooran1987/grabsampling.svg?branch=master" alt="Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/Mayooran1987/grabsampling-ub7sv"><img src="https://ci.appveyor.com/api/projects/status/2ousql3kftahm32k?svg=true" alt="Build status"></a></li>
-<li><a href="https://cran.r-project.org/package=grabsampling"><img src="http://www.r-pkg.org/badges/version/grabsampling" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://cran.r-project.org/package=grabsampling"><img src="http://cranlogs.r-pkg.org/badges/last-month/grabsampling"></a></li>
+<li><a href="https://travis-ci.org/Mayooran1987/grabsampling" class="external-link"><img src="https://travis-ci.org/Mayooran1987/grabsampling.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/Mayooran1987/grabsampling-ub7sv" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/2ousql3kftahm32k?svg=true" alt="Build status"></a></li>
+<li><a href="https://cran.r-project.org/package=grabsampling" class="external-link"><img src="http://www.r-pkg.org/badges/version/grabsampling" alt="CRAN_Status_Badge"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Mayooran Thevaraja, Kondaswamy Govindaraju, Mark Bebbington.</p>
+  <p></p>
+<p>Developed by Mayooran Thevaraja, Kondaswamy Govindaraju, Mark Bebbington.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -134,6 +163,8 @@
 
   
 
+
+  
 
   </body>
 </html>

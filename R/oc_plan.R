@@ -19,85 +19,118 @@
 ##' @usage  oc_plan(c, r, t, distribution, K, m, sd)
 ##' @export
 oc_plan <- function(c, r, t, distribution, K = 0.25, m = 0, sd = 0.8) {
-    Sampling_scheme <- NULL
-    P_a <- NULL
-    if (distribution == "Poisson gamma") {
-        mu <- seq(-6, -1, 0.01)
-        lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-        p_a1 <- prob_accept(c, r, t, mu, distribution, K, m, sd)
-        Prob_df <- data.frame(mu, p_a1)
-        f_spr <- function(t, r, c) {
-            if (r == 1) {
-                sprintf("increments sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
-            } else {
-                sprintf("grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
-            }
-        }
-        Prob <- plyr::rename(Prob_df, c(p_a1 = f_spr(t, r, c)))
-        melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
-        ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) + ggplot2::ggtitle("OC curve based on Poisson gamma distribution") +
-            ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu*~")")) + ggplot2::ylab(expression(P[a])) + ggthemes::scale_colour_colorblind() +
-            ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.85, 0.85), axis.line.x.top = ggplot2::element_line(color = "red"),
-                axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")) +
-            ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~., name = "mean concentration (cfu/g)", breaks = c(-5, -4, -3, -2, -1, 0, 1, 2),
-                labels = c(sprintf("%f", 10^(-5 + (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(-4 + (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(-3 +
-                  (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(-2 + (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(-1 + (sd^2/2) * log(10, exp(1)))),
-                  sprintf("%f", 10^(0 + (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(1 + (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(2 + (sd^2/2) *
-                    log(10, exp(1)))))))
-    } else if (distribution == "Lognormal") {
-        mu <- seq(-3, 0, 0.01)
-        lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-        p_a1 <- prob_accept(c, r, t, mu, distribution, K, m, sd)
-        Prob_df <- data.frame(mu, p_a1)
-        f_spr <- function(t, r, c) {
-            if (r == 1) {
-                sprintf("increments sampling (t=%.0f, c=%.0f)", t, c)
-            } else {
-                sprintf("grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
-            }
-        }
-        Prob <- plyr::rename(Prob_df, c(p_a1 = f_spr(t, r, c)))
-        melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
-        ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) + ggplot2::ggtitle("OC curve based on Lognormal distribution") +
-            ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu*~")")) + ggplot2::ylab(expression(P[a])) + ggthemes::scale_colour_colorblind() +
-            ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.85, 0.85), axis.line.x.top = ggplot2::element_line(color = "red"),
-                axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")) +
-            ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~., name = "mean concentration (cfu/g)", breaks = c(-5, -4, -3, -2, -1, 0, 1, 2),
-                labels = c(sprintf("%f", 10^(-5 + (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(-4 + (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(-3 +
-                  (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(-2 + (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(-1 + (sd^2/2) * log(10, exp(1)))),
-                  sprintf("%f", 10^(0 + (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(1 + (sd^2/2) * log(10, exp(1)))), sprintf("%f", 10^(2 + (sd^2/2) *
-                    log(10, exp(1)))))))
-    } else if (distribution == "Poisson lognormal") {
-        mu <- seq(-6, 0, 0.01)
-        lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-        p_a1 <- prob_accept(c, r, t, mu, distribution, K, m, sd)
-        Prob_df <- data.frame(mu, p_a1)
-        f_spr <- function(t, r, c) {
-            if (r == 1) {
-                sprintf("increments sampling (t=%.0f, c=%.0f)", t, c)
-            } else {
-                sprintf("grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
-            }
-        }
-        Prob <- plyr::rename(Prob_df, c(p_a1 = f_spr(t, r, c)))
-        melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
-        ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) + ggplot2::ggtitle("OC curve based on Poisson Lognormal distribution") +
-            ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu*~")")) + ggplot2::ylab(expression(P[a])) + ggthemes::scale_colour_colorblind() +
-            ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.85, 0.85), axis.line.x.top = ggplot2::element_line(color = "red"),
-                axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")) +
-            ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~., name = expression("arithmetic mean cell count (" ~ lambda*~")"), breaks = c(-8, -7, -6, -5, -4, -3, -2,
-                -1, 0, 1, 2), labels = c(sprintf("%f", 10^(-8 + (sd^2/2) * log(10, exp(1)))),
-                                         sprintf("%f", 10^(-7 + (sd^2/2) * log(10, exp(1)))),
-                                         sprintf("%f", 10^(-6 + (sd^2/2) * log(10, exp(1)))),
-                                         sprintf("%f", 10^(-5 + (sd^2/2) * log(10, exp(1)))),
-                                         sprintf("%f", 10^(-4 + (sd^2/2) * log(10, exp(1)))),
-                                         sprintf("%f", 10^(-3 + (sd^2/2) * log(10, exp(1)))),
-                                         sprintf("%f", 10^(-2 + (sd^2/2) * log(10, exp(1)))),
-                                         sprintf("%f", 10^(-1 + (sd^2/2) * log(10, exp(1)))),
-                                         sprintf("%f", 10^(0  + (sd^2/2) * log(10, exp(1)))),
-                                         sprintf("%f", 10^(1  + (sd^2/2) * log(10, exp(1)))),
-                                         sprintf("%f", 10^(2  + (sd^2/2) * log(10, exp(1)))))))
-    } else {
-        warning("please choose the one of the given distribution with case sensitive such as 'Poisson gamma' or 'Lognormal' or 'Poisson lognormal'")
+  Sampling_scheme <- NULL
+  P_a <- NULL
+  if (distribution == "Poisson gamma") {
+    mu <- seq(-6, -1, 0.01)
+    lambda <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
+    p_a1 <- prob_accept(c, r, t, mu, distribution, K, m, sd)
+    Prob_df <- data.frame(mu, p_a1)
+    f_spr <- function(t, r, c) {
+      if (r == 1) {
+        sprintf("increments sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
+      } else {
+        sprintf("grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
+      }
     }
+    Prob <- plyr::rename(Prob_df, c(p_a1 = f_spr(t, r, c)))
+    melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
+    ggplot2::ggplot(melten.Prob) +
+      ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) +
+      ggplot2::ggtitle("OC curve based on Poisson gamma distribution") +
+      ggplot2::theme_classic() +
+      ggplot2::xlab(expression("log mean concentration  (" ~ mu * ~")")) +
+      ggplot2::ylab(expression(P[a])) +
+      ggthemes::scale_colour_colorblind() +
+      ggplot2::theme(
+        plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.85, 0.85), axis.line.x.top = ggplot2::element_line(color = "red"),
+        axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")
+      ) +
+      ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~.,
+        name = "mean concentration (cfu/g)", breaks = c(-5, -4, -3, -2, -1, 0, 1, 2),
+        labels = c(
+          sprintf("%f", 10^(-5 + (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(-4 + (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(-3 +
+            (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(-2 + (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(-1 + (sd^2 / 2) * log(10, exp(1)))),
+          sprintf("%f", 10^(0 + (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(1 + (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(2 + (sd^2 / 2) *
+            log(10, exp(1))))
+        )
+      ))
+  } else if (distribution == "Lognormal") {
+    mu <- seq(-3, 0, 0.01)
+    lambda <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
+    p_a1 <- prob_accept(c, r, t, mu, distribution, K, m, sd)
+    Prob_df <- data.frame(mu, p_a1)
+    f_spr <- function(t, r, c) {
+      if (r == 1) {
+        sprintf("increments sampling (t=%.0f, c=%.0f)", t, c)
+      } else {
+        sprintf("grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
+      }
+    }
+    Prob <- plyr::rename(Prob_df, c(p_a1 = f_spr(t, r, c)))
+    melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
+    ggplot2::ggplot(melten.Prob) +
+      ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) +
+      ggplot2::ggtitle("OC curve based on Lognormal distribution") +
+      ggplot2::theme_classic() +
+      ggplot2::xlab(expression("log mean concentration  (" ~ mu * ~")")) +
+      ggplot2::ylab(expression(P[a])) +
+      ggthemes::scale_colour_colorblind() +
+      ggplot2::theme(
+        plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.85, 0.85), axis.line.x.top = ggplot2::element_line(color = "red"),
+        axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")
+      ) +
+      ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~.,
+        name = "mean concentration (cfu/g)", breaks = c(-5, -4, -3, -2, -1, 0, 1, 2),
+        labels = c(
+          sprintf("%f", 10^(-5 + (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(-4 + (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(-3 +
+            (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(-2 + (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(-1 + (sd^2 / 2) * log(10, exp(1)))),
+          sprintf("%f", 10^(0 + (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(1 + (sd^2 / 2) * log(10, exp(1)))), sprintf("%f", 10^(2 + (sd^2 / 2) *
+            log(10, exp(1))))
+        )
+      ))
+  } else if (distribution == "Poisson lognormal") {
+    mu <- seq(-6, 0, 0.01)
+    lambda <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
+    p_a1 <- prob_accept(c, r, t, mu, distribution, K, m, sd)
+    Prob_df <- data.frame(mu, p_a1)
+    f_spr <- function(t, r, c) {
+      if (r == 1) {
+        sprintf("increments sampling (t=%.0f, c=%.0f)", t, c)
+      } else {
+        sprintf("grab sampling (t=%.0f, r=%.0f, c=%.0f)", t, r, c)
+      }
+    }
+    Prob <- plyr::rename(Prob_df, c(p_a1 = f_spr(t, r, c)))
+    melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
+    ggplot2::ggplot(melten.Prob) +
+      ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) +
+      ggplot2::ggtitle("OC curve based on Poisson Lognormal distribution") +
+      ggplot2::theme_classic() +
+      ggplot2::xlab(expression("log mean concentration  (" ~ mu * ~")")) +
+      ggplot2::ylab(expression(P[a])) +
+      ggthemes::scale_colour_colorblind() +
+      ggplot2::theme(
+        plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.85, 0.85), axis.line.x.top = ggplot2::element_line(color = "red"),
+        axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")
+      ) +
+      ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~., name = expression("arithmetic mean cell count (" ~ lambda * ~")"), breaks = c(
+        -8, -7, -6, -5, -4, -3, -2,
+        -1, 0, 1, 2
+      ), labels = c(
+        sprintf("%f", 10^(-8 + (sd^2 / 2) * log(10, exp(1)))),
+        sprintf("%f", 10^(-7 + (sd^2 / 2) * log(10, exp(1)))),
+        sprintf("%f", 10^(-6 + (sd^2 / 2) * log(10, exp(1)))),
+        sprintf("%f", 10^(-5 + (sd^2 / 2) * log(10, exp(1)))),
+        sprintf("%f", 10^(-4 + (sd^2 / 2) * log(10, exp(1)))),
+        sprintf("%f", 10^(-3 + (sd^2 / 2) * log(10, exp(1)))),
+        sprintf("%f", 10^(-2 + (sd^2 / 2) * log(10, exp(1)))),
+        sprintf("%f", 10^(-1 + (sd^2 / 2) * log(10, exp(1)))),
+        sprintf("%f", 10^(0 + (sd^2 / 2) * log(10, exp(1)))),
+        sprintf("%f", 10^(1 + (sd^2 / 2) * log(10, exp(1)))),
+        sprintf("%f", 10^(2 + (sd^2 / 2) * log(10, exp(1))))
+      )))
+  } else {
+    warning("please choose the one of the given distribution with case sensitive such as 'Poisson gamma' or 'Lognormal' or 'Poisson lognormal'")
+  }
 }

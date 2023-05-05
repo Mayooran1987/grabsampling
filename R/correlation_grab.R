@@ -16,8 +16,6 @@
 ##' @export
 ## we have used the notation as d_g in the paper Quantitative risk assessment for grab sampling inspection of powdered products
 correlation_grab <- function(r, p, d) {
-  result <- (d * p * (1 - p * (1 - d))^(r - 1))/prob_detect_single_grab(r, p, d)
+  result <- (d * p * (1 - p * (1 - d))^(r - 1)) / prob_detect_single_grab(r, p, d)
   return(result)
-  }
-
-
+}

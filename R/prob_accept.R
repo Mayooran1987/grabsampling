@@ -33,54 +33,56 @@
 ##' @export
 ## we have used the notation as P_D in the paper Quantitative risk assessment for grab sampling inspection of powdered products
 prob_accept <- function(c, r, t, mu, distribution, K = 0.25, m = 0, sd = 0.8) {
-    p_defect <- NULL
-    prob_accept <- NULL
-    if (distribution == "Poisson gamma") {
-        lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-        p_defect <- 1 - extraDistr::pgpois(m, shape = K, rate = K/(lambda * r))
-        prob_accept <- stats::pbinom(c, t, p_defect)
-    } else if (distribution == "Lognormal") {
-        lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-        p_defect <- 1 - stats::plnorm(10^m, mu + log(r, 10), sd)
-        prob_accept <- stats::pbinom(c, t, p_defect)
-    } else if (distribution == "Poisson lognormal") {
-        lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-        # we borrowed from VGAM package
-        dpolono_1 <- function(x, meanlog = 0, sdlog = 1, bigx = 170, ...) {
-            mapply(function(x, meanlog, sdlog, ...) {
-                if (abs(x) > floor(x)) {
-                  0
-                } else if (x == Inf) {
-                  0
-                } else if (x > bigx) {
-                  z <- (log(x) - meanlog)/sdlog
-                  (1 + (z^2 + log(x) - meanlog - 1)/(2 * x * sdlog^2)) * exp(-0.5 * z^2)/(sqrt(2 * pi) * sdlog * x)
-                } else stats::integrate(function(t) exp(t * x - exp(t) - 0.5 * ((t - meanlog)/sdlog)^2), lower = -Inf, upper = Inf, ...)$value/(sqrt(2 *
-                  pi) * sdlog * exp(lgamma(x + 1)))
-            }, x, meanlog, sdlog, ...)
+  p_defect <- NULL
+  prob_accept <- NULL
+  if (distribution == "Poisson gamma") {
+    lambda <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
+    p_defect <- 1 - extraDistr::pgpois(m, shape = K, rate = K / (lambda * r))
+    prob_accept <- stats::pbinom(c, t, p_defect)
+  } else if (distribution == "Lognormal") {
+    lambda <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
+    p_defect <- 1 - stats::plnorm(10^m, mu + log(r, 10), sd)
+    prob_accept <- stats::pbinom(c, t, p_defect)
+  } else if (distribution == "Poisson lognormal") {
+    lambda <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
+    # we borrowed from VGAM package
+    dpolono_1 <- function(x, meanlog = 0, sdlog = 1, bigx = 170, ...) {
+      mapply(function(x, meanlog, sdlog, ...) {
+        if (abs(x) > floor(x)) {
+          0
+        } else if (x == Inf) {
+          0
+        } else if (x > bigx) {
+          z <- (log(x) - meanlog) / sdlog
+          (1 + (z^2 + log(x) - meanlog - 1) / (2 * x * sdlog^2)) * exp(-0.5 * z^2) / (sqrt(2 * pi) * sdlog * x)
+        } else {
+          stats::integrate(function(t) exp(t * x - exp(t) - 0.5 * ((t - meanlog) / sdlog)^2), lower = -Inf, upper = Inf, ...)$value / (sqrt(2 *
+            pi) * sdlog * exp(lgamma(x + 1)))
         }
-        ppolono_1 <- function(q, meanlog = 0, sdlog = 1, isOne = 1 - sqrt(.Machine$double.eps), ...) {
-            .cumprob <- rep_len(0, length(q))
-            .cumprob[q == Inf] <- 1
-            q <- floor(q)
-            ii <- -1
-            while (any(xActive <- ((.cumprob < isOne) & (q > ii)))) .cumprob[xActive] <- .cumprob[xActive] + dpolono_1(ii <- (ii + 1), meanlog, sdlog,
-                ...)
-            .cumprob
-        }
-
-        sam <- function(mu) {
-            result <- 1 - ppolono_1(10^m, mu + log(r, 10), sd)
-            return(result)
-        }
-        p_defect <- as.numeric(lapply(mu, sam))
-        prob_accept <- stats::pbinom(c, t, p_defect)
-    } else {
-        warning("please choose one of the given distribution with case sensitive such as 'Poisson' or 'Poisson gamma' or 'Lognormal' or 'Poisson lognormal'")
+      }, x, meanlog, sdlog, ...)
     }
-    return(prob_accept)
+    ppolono_1 <- function(q, meanlog = 0, sdlog = 1, isOne = 1 - sqrt(.Machine$double.eps), ...) {
+      .cumprob <- rep_len(0, length(q))
+      .cumprob[q == Inf] <- 1
+      q <- floor(q)
+      ii <- -1
+      while (any(xActive <- ((.cumprob < isOne) & (q > ii)))) {
+        .cumprob[xActive] <- .cumprob[xActive] + dpolono_1(
+          ii <- (ii + 1), meanlog, sdlog,
+          ...
+        )
+      }
+      .cumprob
+    }
+
+    sam <- function(mu) {
+      result <- 1 - ppolono_1(10^m, mu + log(r, 10), sd)
+      return(result)
+    }
+    p_defect <- as.numeric(lapply(mu, sam))
+    prob_accept <- stats::pbinom(c, t, p_defect)
+  } else {
+    warning("please choose one of the given distribution with case sensitive such as 'Poisson' or 'Poisson gamma' or 'Lognormal' or 'Poisson lognormal'")
+  }
+  return(prob_accept)
 }
-
-
-
-

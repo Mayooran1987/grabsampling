@@ -24,10 +24,10 @@
 ##' @export
 ## we have used the notation as P_D in the paper Quantitative risk assessment for grab sampling inspection of powdered products
 prob_detect <- function(c, r, t, d, p, N, method) {
-    prob <- 0
-    for (i in 0:c) {
-        prob <- prob + prob_contaminant(i, r, t, d, p, N, method)
-        }
-    prob_detection <- 1 - prob
-    return(prob_detection)
-    }
+  prob <- 0
+  for (i in 0:c) {
+    prob <- prob + prob_contaminant(i, r, t, d, p, N, method)
+  }
+  prob_detection <- 1 - prob
+  return(prob_detection)
+}

@@ -28,38 +28,36 @@
 ##'   prob_contaminant(l, r, t, d, p, N, method)
 ##' @export
 prob_contaminant <- function(l, r, t, d, p, N, method) {
-    p_d <- prob_detect_single_grab(r, p, d)
-    if (method == "random") {
-        s_t <- stats::dbinom(l, t, p_d)
-        } else if (method == "systematic") {
-            d_g <- correlation_grab(r, p, d)
-            k <- ceiling(N/(r * t))
-            sum1 <- 0
-            sum2 <- 0
-            if (l == 0) {
-                sum1 <- (1 - p_d) * (1 - (p_d * (1 - d_g^k)))^(t - 1)
-                sum2 <- 0
-                sum3 <- 0
-                } else if (l == 1) {
-                    sum1 <- (1 - p_d) * ((1 - (p_d * (1 - d_g^k)))^(t - 3)) * (p_d * (1 - d_g^k)) * (((1 - p_d) * (1 - d_g^k) * choose(t - 2, 1)) + (1 - (p_d *(1 - d_g^k))) * choose(t - 2, 0))
-                    sum2 <- 0
-                    sum3 <- p_d * ((1 - p_d) * (1 - d_g^k)) * ((1 - (p_d * (1 - d_g^k)))^(t - 2))
-                    } else {
-                        for (j in min(1, l):l) {
-                            sum1 <- sum1 + (1 - p_d) * ((choose(l - 1, j - 1)) * ((1 - (p_d * (1 - d_g^k)))^(t - l - j - 1)) * ((1 - ((1 - p_d) * (1 - d_g^k)))^(l -j)) * (p_d * (1 - d_g^k))^j * (((1 - p_d) * (1 - d_g^k))^(j - 1)) * (((1 - p_d) * (1 - d_g^k)) * (ifelse(t - l  < t , 1, 0)) *
-                                                                                                                   choose(t - l - 1, j) + (1 - (p_d * (1 - d_g^k))) *(ifelse(l == 0, 1, 0)) * (ifelse(l + j - 1 < t, 1, 0)) * choose(t - l - 1, j - 1)))
-                            }
-                        for (i in 1:(l - 1)) {
-                                sum2 <- sum2 + p_d * (choose(l - 1, i)) * ((1 - (p_d * (1 - d_g^k)))^(t - l - i - 1)) * ((1 - ((1 - p_d) * (1 - d_g^k)))^(l - 1 - i)) *(p_d * (1 - d_g^k))^i * ((1 - p_d) * (1 - d_g^k))^i * (((1 - p_d) * (1 - d_g^k)) * (ifelse(l + i < t , 1, 0)) * choose(t - l -1, i) + (1 - (p_d * (1 - d_g^k))) *(ifelse(l + i - 2 < t - 1, 1, 0)) * choose(t - l - 1, i - 1))
-                            }
-                        }
-            sum3 <- p_d * (ifelse(l == 0, 1, 0)) * ((1 - ((1 - p_d) * (1 - d_g^k)))^(l - 1)) * ((ifelse(l == t , 1, 0)) +  (ifelse(l == 0, 1, 0) * ifelse(t - 1 == 0, 1, 0) * (1 - ifelse(t - 1 < l, 1, 0)))  * ((1 - p_d) *(1 - d_g^k)) * ((1 - (p_d * (1 - d_g^k)))^(t - 1 - l)))
-            s_t <- sum1 + sum2 + sum3
-        }
-    else {
-        warning ("please choose one of the given sampling method with case sensitive such as 'random' or 'systematic'")
+  p_d <- prob_detect_single_grab(r, p, d)
+  if (method == "random") {
+    s_t <- stats::dbinom(l, t, p_d)
+  } else if (method == "systematic") {
+    d_g <- correlation_grab(r, p, d)
+    k <- ceiling(N / (r * t))
+    sum1 <- 0
+    sum2 <- 0
+    if (l == 0) {
+      sum1 <- (1 - p_d) * (1 - (p_d * (1 - d_g^k)))^(t - 1)
+      sum2 <- 0
+      sum3 <- 0
+    } else if (l == 1) {
+      sum1 <- (1 - p_d) * ((1 - (p_d * (1 - d_g^k)))^(t - 3)) * (p_d * (1 - d_g^k)) * (((1 - p_d) * (1 - d_g^k) * choose(t - 2, 1)) + (1 - (p_d * (1 - d_g^k))) * choose(t - 2, 0))
+      sum2 <- 0
+      sum3 <- p_d * ((1 - p_d) * (1 - d_g^k)) * ((1 - (p_d * (1 - d_g^k)))^(t - 2))
+    } else {
+      for (j in min(1, l):l) {
+        sum1 <- sum1 + (1 - p_d) * ((choose(l - 1, j - 1)) * ((1 - (p_d * (1 - d_g^k)))^(t - l - j - 1)) * ((1 - ((1 - p_d) * (1 - d_g^k)))^(l - j)) * (p_d * (1 - d_g^k))^j * (((1 - p_d) * (1 - d_g^k))^(j - 1)) * (((1 - p_d) * (1 - d_g^k)) * (ifelse(t - l < t, 1, 0)) *
+          choose(t - l - 1, j) + (1 - (p_d * (1 - d_g^k))) * (ifelse(l == 0, 1, 0)) * (ifelse(l + j - 1 < t, 1, 0)) * choose(t - l - 1, j - 1)))
+      }
+      for (i in 1:(l - 1)) {
+        sum2 <- sum2 + p_d * (choose(l - 1, i)) * ((1 - (p_d * (1 - d_g^k)))^(t - l - i - 1)) * ((1 - ((1 - p_d) * (1 - d_g^k)))^(l - 1 - i)) * (p_d * (1 - d_g^k))^i * ((1 - p_d) * (1 - d_g^k))^i * (((1 - p_d) * (1 - d_g^k)) * (ifelse(l + i < t, 1, 0)) * choose(t - l - 1, i) + (1 - (p_d * (1 - d_g^k))) * (ifelse(l + i - 2 < t - 1, 1, 0)) * choose(t - l - 1, i - 1))
+      }
     }
-    return(s_t)
-    }
+    sum3 <- p_d * (ifelse(l == 0, 1, 0)) * ((1 - ((1 - p_d) * (1 - d_g^k)))^(l - 1)) * ((ifelse(l == t, 1, 0)) + (ifelse(l == 0, 1, 0) * ifelse(t - 1 == 0, 1, 0) * (1 - ifelse(t - 1 < l, 1, 0))) * ((1 - p_d) * (1 - d_g^k)) * ((1 - (p_d * (1 - d_g^k)))^(t - 1 - l)))
+    s_t <- sum1 + sum2 + sum3
+  } else {
+    warning("please choose one of the given sampling method with case sensitive such as 'random' or 'systematic'")
+  }
+  return(s_t)
+}
 ## We have derived transition matrix for sequential sampling method, so we can include sequential sampling method too if we want.
-

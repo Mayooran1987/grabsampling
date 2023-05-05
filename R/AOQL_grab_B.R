@@ -21,12 +21,12 @@
 ##'   AOQL_grab_B(c, r, t, distribution, llim)
 ##' @usage  AOQL_grab_B(c, r, t, distribution,llim, K, m, sd)
 ##' @export
-AOQL_grab_B<- function(c, r, t, distribution,llim, K = 0.25, m = 0, sd = 0.8){
-  Sampling_scheme <- NULL  # Initalizing
+AOQL_grab_B <- function(c, r, t, distribution, llim, K = 0.25, m = 0, sd = 0.8) {
+  Sampling_scheme <- NULL # Initalizing
   P_D <- NULL
   lambda <- seq(0, llim, by = 1e-04)
-  mu <- log(lambda, 10)-(sd^2/2)*log(10, exp(1))
-  AOQ <- lambda*prob_accept(c, r, t, mu, distribution, K = 0.25, m = 0, sd = 0.8)
+  mu <- log(lambda, 10) - (sd^2 / 2) * log(10, exp(1))
+  AOQ <- lambda * prob_accept(c, r, t, mu, distribution, K = 0.25, m = 0, sd = 0.8)
   Prob_df <- data.frame(lambda, AOQ)
   f_spr <- function(t, r, c) {
     if (r == 1) {
@@ -37,11 +37,14 @@ AOQL_grab_B<- function(c, r, t, distribution,llim, K = 0.25, m = 0, sd = 0.8){
   }
   Prob <- plyr::rename(Prob_df, c(AOQ = f_spr(t, r, c)))
   melten.Prob <- reshape2::melt(Prob, id = "lambda", variable.name = "Sampling_scheme", value.name = "AOQ")
-  ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = lambda, y = AOQ, group = Sampling_scheme, colour = Sampling_scheme)) +
+  ggplot2::ggplot(melten.Prob) +
+    ggplot2::geom_line(ggplot2::aes(x = lambda, y = AOQ, group = Sampling_scheme, colour = Sampling_scheme)) +
     # ggplot2::ggtitle("AOQ curve based on arithmetic mean of cell count") +
-    ggplot2::theme_classic() +ggplot2::ylab(expression(AOQ)) + ggthemes::scale_colour_colorblind()+
-    ggplot2::xlab(expression("arithmetic mean cell count (" ~ lambda*~")")) +
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 10), legend.position = c(0.75, 0.50))+
+    ggplot2::theme_classic() +
+    ggplot2::ylab(expression(AOQ)) +
+    ggthemes::scale_colour_colorblind() +
+    ggplot2::xlab(expression("arithmetic mean cell count (" ~ lambda * ~")")) +
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 10), legend.position = c(0.75, 0.50)) +
     # # If we want to add log mean concentration as second x axis
     # ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.75, 0.50), axis.line.x.top = ggplot2::element_line(color = "red"),
     #                axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")) +
@@ -55,12 +58,6 @@ AOQL_grab_B<- function(c, r, t, distribution,llim, K = 0.25, m = 0, sd = 0.8){
     #                                                                     sprintf("%f", log(0.25, 10)-(sd^2/2)*log(10, exp(1))),
     #                                                                     sprintf("%f", log(0.30, 10)-(sd^2/2)*log(10, exp(1))),
     #                                                                     sprintf("%f", log(0.50, 10)-(sd^2/2)*log(10, exp(1))))))+
-    ggplot2::geom_hline(yintercept=AOQ[which.max(AOQ)],linetype = "dashed")+
-    ggplot2::annotate("text", x=4*lambda[which.max(AOQ)], y=AOQ[which.max(AOQ)], label = sprintf("\n AOQL = %0.4f", round(AOQ[which.max(AOQ)], digits = 4)), size=3)
-  }
-
-
-
-
-
-
+    ggplot2::geom_hline(yintercept = AOQ[which.max(AOQ)], linetype = "dashed") +
+    ggplot2::annotate("text", x = 4 * lambda[which.max(AOQ)], y = AOQ[which.max(AOQ)], label = sprintf("\n AOQL = %0.4f", round(AOQ[which.max(AOQ)], digits = 4)), size = 3)
+}

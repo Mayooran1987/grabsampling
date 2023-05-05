@@ -31,9 +31,9 @@ compare_plans_oc_sd <- function(c1, c2, c3, r1, t1, r2, t2, r3, t3, sd1, sd2, sd
   P_a <- NULL
   mu <- seq(-6, 0, 0.05)
   # lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-  p_a1 <- grabsampling::prob_accept(c1, r1, t1, mu, distribution, sd=sd1, K, m)
-  p_a2 <- grabsampling::prob_accept(c2, r2, t2, mu, distribution, sd=sd2, K, m)
-  p_a3 <- grabsampling::prob_accept(c3, r3, t3, mu, distribution, sd=sd3, K, m)
+  p_a1 <- grabsampling::prob_accept(c1, r1, t1, mu, distribution, sd = sd1, K, m)
+  p_a2 <- grabsampling::prob_accept(c2, r2, t2, mu, distribution, sd = sd2, K, m)
+  p_a3 <- grabsampling::prob_accept(c3, r3, t3, mu, distribution, sd = sd3, K, m)
   Prob_df <- data.frame(mu, p_a1, p_a2, p_a3)
   f_spr <- function(t, r, c, sd) {
     if (r == 1) {
@@ -44,9 +44,11 @@ compare_plans_oc_sd <- function(c1, c2, c3, r1, t1, r2, t2, r3, t3, sd1, sd2, sd
   }
   Prob <- plyr::rename(Prob_df, c(p_a1 = f_spr(t1, r1, c1, sd1), p_a2 = f_spr(t2, r2, c2, sd2), p_a3 = f_spr(t3, r3, c3, sd3)))
   melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
-  ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) +
-    ggplot2::xlab(expression("log mean concentration  (" ~ mu*~")")) +
-    ggplot2::ylab(expression(P[a])) + ggplot2::theme_classic() +
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 10),legend.position = c(0.75,0.75)) +
+  ggplot2::ggplot(melten.Prob) +
+    ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) +
+    ggplot2::xlab(expression("log mean concentration  (" ~ mu * ~")")) +
+    ggplot2::ylab(expression(P[a])) +
+    ggplot2::theme_classic() +
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 10), legend.position = c(0.75, 0.75)) +
     ggthemes::scale_colour_colorblind()
 }

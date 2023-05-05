@@ -16,5 +16,4 @@
 prob_detect_single_grab <- function(r, p, d) {
   result <- 1 - (1 - p) * (1 - p * (1 - d))^(r - 1)
   return(result)
-  }
-
+}
