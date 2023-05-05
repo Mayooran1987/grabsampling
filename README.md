@@ -1,4 +1,4 @@
-[![R](https://github.com/Mayooran1987/grabsampling/actions/workflows/r.yml/badge.svg)](https://github.com/Mayooran1987/grabsampling/actions/workflows/r.yml)
+[![R-CMD-check](https://github.com/Mayooran1987/grabsampling/actions/workflows/rcmd.yml/badge.svg)](https://github.com/Mayooran1987/grabsampling/actions/workflows/rcmd.yml) [![R](https://github.com/Mayooran1987/grabsampling/actions/workflows/r.yml/badge.svg)](https://github.com/Mayooran1987/grabsampling/actions/workflows/r.yml)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/grabsampling)](https://cran.r-project.org/package=grabsampling)
    
 # grabsampling
