@@ -1,5 +1,4 @@
 [![R-CMD-check](https://github.com/Mayooran1987/grabsampling/actions/workflows/rcmd.yml/badge.svg)](https://github.com/Mayooran1987/grabsampling/actions/workflows/rcmd.yml) [![R](https://github.com/Mayooran1987/grabsampling/actions/workflows/r.yml/badge.svg)](https://github.com/Mayooran1987/grabsampling/actions/workflows/r.yml)
-[![pages-build-deployment](https://github.com/Mayooran1987/grabsampling/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Mayooran1987/grabsampling/actions/workflows/pages/pages-build-deployment)<!-- <style> -->
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/grabsampling)](https://cran.r-project.org/package=grabsampling)
    [![](http://cranlogs.r-pkg.org/badges/grand-total/grabsampling?color=green)](https://cran.r-project.org/package=grabsampling)
    [![](https://img.shields.io/badge/doi-10.1016/j.foodcont.2020.107512-blue.svg)](https://doi.org/10.1016/j.foodcont.2020.107512)
