@@ -1,4 +1,4 @@
- [![Build Status](https://travis-ci.org/Mayooran1987/grabsampling.svg?branch=master)](https://travis-ci.org/Mayooran1987/grabsampling) [![Build status](https://ci.appveyor.com/api/projects/status/2ousql3kftahm32k?svg=true)](https://ci.appveyor.com/project/Mayooran1987/grabsampling-ub7sv)
+[![R](https://github.com/Mayooran1987/grabsampling/actions/workflows/r.yml/badge.svg)](https://github.com/Mayooran1987/grabsampling/actions/workflows/r.yml)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/grabsampling)](https://cran.r-project.org/package=grabsampling)
    
 # grabsampling
