@@ -9,7 +9,7 @@ Authors@R: c(
           )
 Authors: Mayooran Thevaraja [aut, cre], Kondaswamy Govindaraju [aut], Mark Bebbington [aut]
 Maintainer: Mayooran Thevaraja <mayooran@eng.jfn.ac.lk>
-URL: https://github.com/Mayooran1987/grabsampling 
+URL: https://github.com/Mayooran1987/grabsampling, https://mayooran1987.github.io/grabsampling/
 BugReports: https://github.com/Mayooran1987/grabsampling/issues
 Description: The goal of grabsampling package is to enable probability of detection calculation for grab samples selection by using two different methods such as systematic or random based on two-state Markov chain in bulk production process. 
 License: GPL (>= 2)
